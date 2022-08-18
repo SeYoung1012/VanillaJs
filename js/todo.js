@@ -25,8 +25,12 @@ function saveToDos(){
 
 function deleteToDo(event) {
     const li = event.target.parentElement;
-    console.log(li.id);
     li.remove();
+    //toDo.id 는 number이고, li.id는 String임. 
+    //형변환해주면 됨.
+    console.log(typeof li.id);
+    toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
+    saveToDos();
 
 }
 
@@ -75,9 +79,24 @@ if(savedToDos !== null) {
     //자바스크립트는 Data Structure가 중요함.
     //대부분은 array 로 각각의 item을 가지고 무언가를 하고 싶어함.
     //forEach()는 array의 각 item에 대해  function을 실행하게 해줌
+    //forEach함수는 painteToDo를 ParsedToDos배열의 요소마다 실행.
     toDos = parsedToDos;
     parsedToDos.forEach(paintToDo);
 } 
+
+//array를 받아와서 item을 지워야함. 
+//지우고 싶은 item을 제외하고 새 array를 만든다. 
+//이 역할을 filter()가 함. 
+//array에서 item값을 유지하는 건 function에서 리턴 true를 해야함. ->이게 제일중요
+//이 공식을 이해하기
+//const todos = [{text:"lalala"}, {text:"lololo"}]
+
+//function sextFilter(todo){
+//    return todo.text !== "lololo"
+//}
+
+//todos.filter(sexyFilter)
+//0:{text: "lalala"}
 
 
 
